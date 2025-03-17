@@ -1,0 +1,44 @@
+body {
+    font-family: 'Times New Roman';
+}
+.header {
+    background-color: #ADD8E6;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    border: 1px solid black;
+}
+.home_page {
+    margin: 20px;
+}
+.home_page a{
+    display: block;
+    margin: 5px 0;
+    color: blue;
+}
+.home_page a:visited {
+    color: green;
+}
+.search_box {
+    margin: 20px;
+}
+.search_box label{
+    display: block;
+    margin-top: 5px;
+}
+.search_box input, .search_box button {
+    display: inline-block;
+    margin-top: 5px;
+}
+.match1 {
+    padding: 10px;
+    margin-top: 20px;
+}
+.match2 {
+    padding: 10px;
+    margin-top: 20px;
+}
+.match3 {
+    padding: 10px;
+    margin-top: 20px;
+}

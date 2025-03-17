@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notebook</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/item.css') }}">
+</head>
+<body>
+    <div class="header">NoteBook</div>
+    <div class="home_page">
+        <a href="{{ url_for('main_routes.home') }}">home</a>
+    </div>
+    <div class="note_title">
+        <strong>{{ note.title }}</strong>
+    </div>
+    <div class="note_content">
+        <div class="highlight">{{ note.created_at }}</div>
+        {{ note.content }}
+    </div>
+    <div class="comment">
+        <strong>Comments</strong>
+        {% for comment in note.comments %}
+            <div class="comment_box">
+                <div class="highlight">{{ comment.created_at }}</div>
+                {{ comment.content }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="delete_note">
+        <form method="POST" action="{{ url_for('main_routes.delete_note') }}">
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit">Delete Note</button>
+        </form>
+    </div>
+    <div class="add_comment">
+        <button onclick="displayAndHide()">Add Comment</button>
+        <form id="comment_form" method="POST" action="{{ url_for('main_routes.add_comment') }}" style="display:none;">
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <textarea name="comment_content" placeholder="Enter your comment here"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/display.js') }}"></script>
+</body>
+</html>
