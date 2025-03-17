@@ -1,5 +1,6 @@
 from notebook.initial import db
 
+
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), unique=True, nullable=False)
@@ -8,7 +9,7 @@ class Note(db.Model):
     comments = db.relationship('Comment', backref='note', lazy='joined')
 
     def __repr__(self):
-        return '<Note %r>' % (self.title)
+        return '<Note %r>' % self.title
 
     @classmethod
     def add_note(cls, title, content):
@@ -40,6 +41,7 @@ class Note(db.Model):
             db.session.rollback()
             return False
 
+
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
@@ -47,7 +49,7 @@ class Comment(db.Model):
     note_id = db.Column(db.Integer, db.ForeignKey('note.id'), nullable=False)
     
     def __repr__(self):
-        return '<Comment %r>' % (self.content)
+        return '<Comment %r>' % self.content
 
     @classmethod
     def add_comment(cls, note_id, content):
