@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notebook</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+</head>
+<body>
+    <div class="header">NoteBook</div>
+    <div class="home_page">
+        <a href="/">home</a>
+    </div>
+    <div class="search_box">
+        <form method="GET" action="{{ url_for('main_routes.search') }}">
+            <label for="search">Search term:</label>
+            <input type="text" id="search" name="q" placeholder="{{ query }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="match1">
+        <strong>Name Match:</strong>
+        {% if name_match %}
+            {% for note in name_match %}
+                {% set note_name = note.title %}
+                <a href="{{ url_for('main_routes.note_detail') }}?name={{ note_name }}" >{{ note_name }}</a>
+            {% endfor %}
+        {% else %}
+            <p>No match found</p>
+        {% endif %}
+    </div>
+    <div class="match2">
+        <strong>Content Match:</strong>
+        {% if content_match %}
+            {% for note in content_match %}
+                {% set note_name = note.title %}
+                <a href="{{ url_for('main_routes.note_detail') }}?name={{ note_name }}" >{{ note_name }}</a>
+            {% endfor %}
+        {% else %}
+            <p>No match found</p>
+        {% endif %}
+    </div>
+    <div class="match3">
+        <strong>Comment Match:</strong>
+        {% if comment_match %}
+            {% for comment in comment_match %}
+                {% set note_name = comment.note.title %}
+                <a href="{{ url_for('main_routes.note_detail') }}?name={{ note_name }}" >{{ note_name }}</a>
+            {% endfor %}
+        {% else %}
+            <p>No match found</p>
+        {% endif %}
+    </div>
+</body>
+</html>
